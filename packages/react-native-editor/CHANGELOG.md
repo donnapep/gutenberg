@@ -24,6 +24,10 @@ For each user feature we should also add a importance categorization label  to i
 
 -   [*] Disabled featured image banner on iOS. [#31681]
 
+## 1.52.2
+
+-   [*] Disabled featured image banner on iOS. [#31681]
+
 ## 1.52.1
 
 -   [*] Fixes for the generated localized strings files.
