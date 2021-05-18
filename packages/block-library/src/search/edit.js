@@ -166,7 +166,7 @@ export default function SearchEdit( {
 	const getResizableSides = () => {
 		if (
 			'button-only' === buttonPosition &&
-			'search-page-link' === buttonBehavior
+			( 'search-page-link' === buttonBehavior || isSearchFieldHidden )
 		) {
 			return {};
 		}
