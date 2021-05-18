@@ -105,6 +105,16 @@ export default function SearchEdit( {
 		}
 	}, [ isSelected ] );
 
+	useEffect( () => {
+		if ( 'button-only' !== buttonPosition ) {
+			return;
+		}
+
+		setAttributes( {
+			isSearchFieldHidden: false,
+		} );
+	}, [ width ] );
+
 	const getBlockClassNames = () => {
 		return classnames(
 			className,
