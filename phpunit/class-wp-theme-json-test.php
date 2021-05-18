@@ -407,6 +407,14 @@ class WP_Theme_JSON_Test extends WP_UnitTestCase {
 					'customGradient' => true,
 					'palette'        => array(
 						array(
+							'slug'  => 'red',
+							'color' => 'red',
+						),
+						array(
+							'slug'  => 'green',
+							'color' => 'green',
+						),
+						array(
 							'slug'  => 'blue',
 							'color' => 'blue',
 						),
