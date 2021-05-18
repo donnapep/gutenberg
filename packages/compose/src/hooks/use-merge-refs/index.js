@@ -3,8 +3,12 @@
  */
 import { useRef, useCallback, useLayoutEffect } from '@wordpress/element';
 
-/** @typedef {import('@wordpress/element').RefObject} RefObject */
-/** @typedef {import('@wordpress/element').RefCallback} RefCallback */
+/* eslint-disable jsdoc/valid-types */
+/**
+ * @template T
+ * @typedef {T extends import('react').Ref<infer R> ? R : never} TypeFromRef
+ */
+/* eslint-enable jsdoc/valid-types */
 
 /**
  * Merges refs into one ref callback. Ensures the merged ref callbacks are only
@@ -15,9 +19,10 @@ import { useRef, useCallback, useLayoutEffect } from '@wordpress/element';
  * callback will be called with `null` and the new ref callback will be called
  * with the same node.
  *
- * @param {Array<RefObject|RefCallback>} refs The refs to be merged.
+ * @template {import('react').Ref<any>} T
+ * @param {Array<T>} refs The refs to be merged.
  *
- * @return {RefCallback} The merged ref callback.
+ * @return {import('react').Ref<TypeFromRef<T>>} The merged ref callback.
  */
 export default function useMergeRefs( refs ) {
 	const element = useRef( null );
@@ -41,7 +46,7 @@ export default function useMergeRefs( refs ) {
 				ref !== previousRef &&
 				didElementChange.current === false
 			) {
-				previousRef( null );
+				/** @type {(ref: any) => void} */ ( previousRef )( null );
 				ref( element.current );
 			}
 		} );
@@ -72,7 +77,7 @@ export default function useMergeRefs( refs ) {
 			if ( typeof ref === 'function' ) {
 				ref( value );
 			} else if ( ref && ref.hasOwnProperty( 'current' ) ) {
-				ref.current = value;
+				/** @type {import('react').MutableRefObject<any>} */ ( ref ).current = value;
 			}
 		} );
 	}, [] );
