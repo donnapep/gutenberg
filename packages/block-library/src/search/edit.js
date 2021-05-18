@@ -348,10 +348,11 @@ export default function SearchEdit( {
 	const blockProps = useBlockProps( {
 		className: getBlockClassNames(),
 		style: alignedStyles,
+		ref: searchRef,
 	} );
 
 	return (
-		<div { ...blockProps } ref={ searchRef }>
+		<div { ...blockProps }>
 			{ resizeListener }
 			{ controls }
 
