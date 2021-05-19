@@ -103,16 +103,18 @@ function getPresetMetadataFromStyleProperty( styleProperty ) {
 export const LINK_COLOR = '--wp--style--color--link';
 export const LINK_COLOR_DECLARATION = `a { color: var(${ LINK_COLOR }, #00e); }`;
 
-const filterColorsFromCoreOrigin = ( path, colors ) => {
+const filterColorsFromCoreOrigin = ( path, setting ) => {
 	if ( path !== 'color.palette' && path !== 'color.gradients' ) {
-		return colors;
+		return setting;
 	}
 
-	if ( ! Array.isArray( colors ) ) {
-		return colors;
+	if ( ! Array.isArray( setting ) ) {
+		return setting;
 	}
 
-	return colors.filter( ( color ) => color?.origin !== 'core' );
+	const colors = setting.filter( ( color ) => color?.origin !== 'core' );
+
+	return colors.length > 0 ? colors : setting;
 };
 
 export function useSetting( path, blockName = '' ) {
